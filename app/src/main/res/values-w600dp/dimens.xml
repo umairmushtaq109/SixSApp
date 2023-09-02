@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">200dp</dimen>
+
+    <dimen name="image_slider_padding">24dp</dimen>
+    <dimen name="login_text_size">48sp</dimen>
+
+</resources>

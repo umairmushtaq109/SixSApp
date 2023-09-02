@@ -1,0 +1,44 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SixSApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/english_voilet</item>
+        <item name="colorPrimaryVariant">@color/english_voilet_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/Coral</item>
+        <item name="colorSecondaryVariant">@color/silver</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="alert_dialog_light" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/float_transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+
+        <item name="sweet_alert_bg_drawable">@drawable/dialog_background</item>
+        <item name="sweet_alert_title_text_color">@color/title_color</item>
+        <item name="sweet_alert_content_text_color">@color/message_color</item>
+    </style>
+
+    <style name="NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

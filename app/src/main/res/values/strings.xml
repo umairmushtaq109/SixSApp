@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">6S App</string>
+
+    <string-array name="spinnerItems">
+        <item>-- Select Remarks --</item>
+        <item>Bad</item>
+        <item>Average</item>
+        <item>Good</item>
+    </string-array>
+</resources>

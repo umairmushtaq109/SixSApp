@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/english_voilet_light"
+        android:orientation="vertical">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/Coral"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/english_voilet"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textSize="@dimen/login_text_size"
+                android:fontFamily="@font/jostbold"
+                android:textColor="@color/Coral" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your credentials to login"
+                android:textSize="20sp"
+                android:textColor="@color/english_voilet"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/jostregular"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outlinedTextFieldServer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/baseline_perm_identity_24"
+                android:layout_marginBottom="8dp"
+                android:hint="Card Number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cardNumber_Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outlinedTextFieldUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pin Code"
+                android:layout_marginBottom="8dp"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/baseline_password_24"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pinCode_Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                app:icon="@drawable/baseline_login_24"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:text="Login" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
