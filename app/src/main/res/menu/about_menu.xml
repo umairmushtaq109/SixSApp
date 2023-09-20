@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_about"
+        android:title="About App"
+        android:icon="@drawable/baseline_help_outline_24"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_fwoh"
+        android:title="5W1H"
+        android:icon="@drawable/unnamed_removebg_preview"
+        app:showAsAction="always" />
+</menu>

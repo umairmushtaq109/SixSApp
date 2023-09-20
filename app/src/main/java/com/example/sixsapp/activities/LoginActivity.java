@@ -2,6 +2,8 @@ package com.example.sixsapp.activities;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -13,9 +15,16 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.azhon.appupdate.manager.DownloadManager;
+import com.example.sixsapp.BuildConfig;
 import com.example.sixsapp.R;
 import com.example.sixsapp.adapters.ImageSliderAdapter;
 import com.example.sixsapp.api.ApiClient;
@@ -25,9 +34,6 @@ import com.example.sixsapp.pojo.User;
 import com.example.sixsapp.utilis.General;
 import com.example.sixsapp.utilis.Global;
 import com.example.sixsapp.utilis.SweetAlert;
-import com.github.javiersantos.appupdater.AppUpdater;
-import com.github.javiersantos.appupdater.enums.Display;
-import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.textfield.TextInputEditText;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -116,16 +122,31 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         //Check for Updates
-        AppUpdater appUpdater = new AppUpdater(this)
-                .setDisplay(Display.DIALOG)
-                .setUpdateFrom(UpdateFrom.JSON)
-                .setTitleOnUpdateAvailable("Update available")
-                .setContentOnUpdateAvailable("Install the latest version available of 6S App")
-                .setButtonUpdate("Update now?")
-	            .setIcon(R.mipmap.ic_launcher) // Notification icon
-                .setCancelable(false);
-        appUpdater.start();
+//        AppUpdater appUpdater = new AppUpdater(this)
+//                .setDisplay(Display.DIALOG)
+//                .setUpdateFrom(UpdateFrom.JSON)
+//                .setTitleOnUpdateAvailable("Update available")
+//                .setContentOnUpdateAvailable("Install the latest version available of 6S App")
+//                .setButtonUpdate("Update now?")
+//	              .setIcon(R.mipmap.ic_launcher) // Notification icon
+//                .setCancelable(false);
+//        appUpdater.start();
 
+        DownloadManager manager = new DownloadManager.Builder(this)
+                .apkUrl("")
+                .apkName("appupdate.apk")
+                .showNotification(true)
+                .smallIcon(R.mipmap.ic_launcher)
+                //设置了此参数，那么内部会自动判断是否需要显示更新对话框，否则需要自己判断是否需要更新
+                .apkVersionCode(2)
+                //同时下面三个参数也必须要设置
+                .apkVersionName("v1.1.1")
+                .apkSize("7.7MB")
+                .apkDescription("更新描述信息(取服务端返回数据)")
+                //省略一些非必须参数...
+                .forcedUpgrade(true)
+                .build();
+        manager.download();
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,5 +268,48 @@ public class LoginActivity extends AppCompatActivity {
             timer.cancel();
             timer = null;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.about_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+
+        if (id == R.id.action_about){
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+            // Inflate the custom layout
+            LayoutInflater inflater = LayoutInflater.from(LoginActivity.this);
+            View dialogView = inflater.inflate(R.layout.dialog_app_info, null);
+
+            // Set the custom layout to the dialog builder
+            builder.setView(dialogView);
+
+            // Retrieve views from the custom layout
+            ImageView logoImageView = dialogView.findViewById(R.id.imageViewLogo);
+            TextView versionTextView = dialogView.findViewById(R.id.textViewVersion);
+
+            // Set app-specific information
+            // Replace with your app's logo and version
+            logoImageView.setImageResource(R.mipmap.ic_launcher_round);
+            versionTextView.setText("Version " + BuildConfig.VERSION_NAME);
+
+            // Create and show the dialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+        if (id == R.id.action_fwoh){
+            Global.Open5W1H(LoginActivity.this);
+        }
+
+        return true;
     }
 }

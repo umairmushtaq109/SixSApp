@@ -197,6 +197,9 @@ public class MainActivity extends AppCompatActivity implements InitiateDialog.Di
         if (id == R.id.action_reports){
             startActivity(new Intent(MainActivity.this, ReportsActivity.class));
         }
+        if (id == R.id.action_fwoh){
+            Global.Open5W1H(MainActivity.this);
+        }
         return true;
     }
 

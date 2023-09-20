@@ -1,6 +1,7 @@
 package com.example.sixsapp.utilis;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -108,7 +109,13 @@ public class Global {
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
-
+    public static void Open5W1H(Context context){
+        // Define the URL you want to open
+        String urlToOpen = "http://192.168.50.5:5000/FiveWOneH/WorkOrder";
+        // Create an Intent with the ACTION_VIEW action and the URL
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlToOpen));
+        context.startActivity(intent);
+    }
     public static File createImageFile(Context context) {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
