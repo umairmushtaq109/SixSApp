@@ -76,7 +76,7 @@ public interface ApiService {
     @POST("api/QualityBarcode/SaveData")
     Call<List<Answer>> saveData(@Part("answerModel")  List<Answer> answerModel);
 
-    @GET("umairmushtaq109/SixSApp/releases/download/v1.1.1/update-changelog.json")
+    @GET("umairmushtaq109/SixSApp/main/app/update-changelog.json")
     Call<UpdateInfo> getUpdateInfo();
 
 //    @Multipart

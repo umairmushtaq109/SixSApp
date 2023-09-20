@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.azhon.appupdate.manager.DownloadManager;
 import com.example.sixsapp.BuildConfig;
@@ -132,19 +133,10 @@ public class LoginActivity extends AppCompatActivity {
 //                .setCancelable(false);
 //        appUpdater.start();
 
-        if(Global.isUpdateAvailable()){
-            DownloadManager manager = new DownloadManager.Builder(this)
-                    .apkUrl("https://github.com/umairmushtaq109/SixSApp/releases/download/v1.1.1/v1.1.1.apk")
-                    .apkName("v1.1.1.apk")
-                    .showNotification(true)
-                    .smallIcon(R.mipmap.ic_launcher)
-                    .apkVersionCode(3) //This must be incremented in build.gradle (:app) and here
-                    .apkVersionName("v1.1.1")
-                    .apkSize("13.7MB")
-                    .apkDescription("- New Feature Added\n- Minor Bug fixes")
-                    .forcedUpgrade(true)
-                    .build();
-            manager.download();
+        if(Global.isUpdateAvailable(LoginActivity.this)){
+
+        } else {
+            Toast.makeText(this, "No Update Available", Toast.LENGTH_SHORT).show();
         }
 
 

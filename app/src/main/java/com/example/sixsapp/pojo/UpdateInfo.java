@@ -10,10 +10,14 @@ public class UpdateInfo {
     @SerializedName("releaseNotes")
     private String releaseNotes;
 
-    public UpdateInfo(int versionCode, String versionName, String releaseNotes) {
+    @SerializedName("url")
+    private String downloadUrl;
+
+    public UpdateInfo(int versionCode, String versionName, String releaseNotes, String downloadUrl) {
         this.versionCode = versionCode;
         this.versionName = versionName;
         this.releaseNotes = releaseNotes;
+        this.downloadUrl = downloadUrl;
     }
 
     public int getVersionCode() {
@@ -38,5 +42,13 @@ public class UpdateInfo {
 
     public void setReleaseNotes(String releaseNotes) {
         this.releaseNotes = releaseNotes;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
     }
 }

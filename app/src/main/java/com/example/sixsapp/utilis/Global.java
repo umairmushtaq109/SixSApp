@@ -1,5 +1,6 @@
 package com.example.sixsapp.utilis;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.Nullable;
 
+import com.azhon.appupdate.manager.DownloadManager;
 import com.example.sixsapp.BuildConfig;
 import com.example.sixsapp.R;
 import com.example.sixsapp.api.ApiClient;
@@ -197,9 +199,9 @@ public class Global {
         return "Invalid Date";
     }
 
-    public static boolean isUpdateAvailable(){
+    public static boolean isUpdateAvailable(Activity activity){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://github.com/")
+                .baseUrl("https://raw.githubusercontent.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
@@ -217,7 +219,18 @@ public class Global {
                     String releaseNotes = updateInfo.getReleaseNotes();
 
                     if(BuildConfig.VERSION_CODE < versionCode){
-                        isAvailable[0] = true;
+                        DownloadManager manager = new DownloadManager.Builder(activity)
+                                .apkUrl("https://github.com/umairmushtaq109/SixSApp/releases/download/v1.1.1/v1.1.1.apk")
+                                .apkName("v1.1.1.apk")
+                                .showNotification(true)
+                                .smallIcon(R.mipmap.ic_launcher)
+                                .apkVersionCode(versionCode) //This must be incremented in build.gradle (:app) and here
+                                .apkVersionName(versionName)
+                                .apkSize("13.7MB")
+                                .apkDescription(releaseNotes)
+                                .forcedUpgrade(true)
+                                .build();
+                        manager.download();
                     }
                 }
             }
