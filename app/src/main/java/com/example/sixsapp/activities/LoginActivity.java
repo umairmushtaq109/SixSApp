@@ -132,21 +132,22 @@ public class LoginActivity extends AppCompatActivity {
 //                .setCancelable(false);
 //        appUpdater.start();
 
-        DownloadManager manager = new DownloadManager.Builder(this)
-                .apkUrl("")
-                .apkName("appupdate.apk")
-                .showNotification(true)
-                .smallIcon(R.mipmap.ic_launcher)
-                //设置了此参数，那么内部会自动判断是否需要显示更新对话框，否则需要自己判断是否需要更新
-                .apkVersionCode(2)
-                //同时下面三个参数也必须要设置
-                .apkVersionName("v1.1.1")
-                .apkSize("7.7MB")
-                .apkDescription("更新描述信息(取服务端返回数据)")
-                //省略一些非必须参数...
-                .forcedUpgrade(true)
-                .build();
-        manager.download();
+        if(Global.isUpdateAvailable()){
+            DownloadManager manager = new DownloadManager.Builder(this)
+                    .apkUrl("https://github.com/umairmushtaq109/SixSApp/releases/download/v1.1.1/v1.1.1.apk")
+                    .apkName("v1.1.1.apk")
+                    .showNotification(true)
+                    .smallIcon(R.mipmap.ic_launcher)
+                    .apkVersionCode(3) //This must be incremented in build.gradle (:app) and here
+                    .apkVersionName("v1.1.1")
+                    .apkSize("13.7MB")
+                    .apkDescription("- New Feature Added\n- Minor Bug fixes")
+                    .forcedUpgrade(true)
+                    .build();
+            manager.download();
+        }
+
+
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override

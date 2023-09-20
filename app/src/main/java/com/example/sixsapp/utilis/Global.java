@@ -12,12 +12,14 @@ import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.sixsapp.BuildConfig;
 import com.example.sixsapp.R;
 import com.example.sixsapp.api.ApiClient;
 import com.example.sixsapp.api.ApiService;
 import com.example.sixsapp.pojo.Category;
 import com.example.sixsapp.pojo.Department;
 import com.example.sixsapp.pojo.Section;
+import com.example.sixsapp.pojo.UpdateInfo;
 import com.example.sixsapp.pojo.User;
 
 import java.io.ByteArrayOutputStream;
@@ -35,6 +37,8 @@ import id.zelory.compressor.Compressor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Global {
     public static User User;
@@ -191,5 +195,38 @@ public class Global {
             e.printStackTrace();
         }
         return "Invalid Date";
+    }
+
+    public static boolean isUpdateAvailable(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://github.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<UpdateInfo> call = apiService.getUpdateInfo();
+        final boolean[] isAvailable = {false};
+
+        call.enqueue(new Callback<UpdateInfo>() {
+            @Override
+            public void onResponse(Call<UpdateInfo> call, Response<UpdateInfo> response) {
+                isAvailable[0] = false;
+                if (response.isSuccessful()) {
+                    UpdateInfo updateInfo = response.body();
+                    int versionCode = updateInfo.getVersionCode();
+                    String versionName = updateInfo.getVersionName();
+                    String releaseNotes = updateInfo.getReleaseNotes();
+
+                    if(BuildConfig.VERSION_CODE < versionCode){
+                        isAvailable[0] = true;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UpdateInfo> call, Throwable t) {
+                // Handle network or other errors
+            }
+        });
+        return isAvailable[0];
     }
 }

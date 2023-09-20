@@ -8,6 +8,7 @@ import com.example.sixsapp.pojo.Product;
 import com.example.sixsapp.pojo.Question;
 import com.example.sixsapp.pojo.ReportResponse;
 import com.example.sixsapp.pojo.Section;
+import com.example.sixsapp.pojo.UpdateInfo;
 import com.example.sixsapp.pojo.User;
 
 import java.util.Date;
@@ -75,6 +76,8 @@ public interface ApiService {
     @POST("api/QualityBarcode/SaveData")
     Call<List<Answer>> saveData(@Part("answerModel")  List<Answer> answerModel);
 
+    @GET("umairmushtaq109/SixSApp/releases/download/v1.1.1/update-changelog.json")
+    Call<UpdateInfo> getUpdateInfo();
 
 //    @Multipart
 //    @POST("api/QualityBarcode/SaveData")
