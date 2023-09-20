@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.util.Base64;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -199,19 +200,17 @@ public class Global {
         return "Invalid Date";
     }
 
-    public static boolean isUpdateAvailable(Activity activity){
+    public static void isUpdateAvailable(Activity activity){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://raw.githubusercontent.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
         Call<UpdateInfo> call = apiService.getUpdateInfo();
-        final boolean[] isAvailable = {false};
 
         call.enqueue(new Callback<UpdateInfo>() {
             @Override
             public void onResponse(Call<UpdateInfo> call, Response<UpdateInfo> response) {
-                isAvailable[0] = false;
                 if (response.isSuccessful()) {
                     UpdateInfo updateInfo = response.body();
                     int versionCode = updateInfo.getVersionCode();
@@ -231,6 +230,8 @@ public class Global {
                                 .forcedUpgrade(true)
                                 .build();
                         manager.download();
+                    } else {
+                        Toast.makeText(activity, "No Update available", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -238,8 +239,8 @@ public class Global {
             @Override
             public void onFailure(Call<UpdateInfo> call, Throwable t) {
                 // Handle network or other errors
+                Toast.makeText(activity, "Error occured while check for updates", Toast.LENGTH_SHORT).show();
             }
         });
-        return isAvailable[0];
     }
 }

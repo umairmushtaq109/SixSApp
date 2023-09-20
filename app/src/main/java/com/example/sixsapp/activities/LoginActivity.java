@@ -133,11 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 //                .setCancelable(false);
 //        appUpdater.start();
 
-        if(Global.isUpdateAvailable(LoginActivity.this)){
-
-        } else {
-            Toast.makeText(this, "No Update Available", Toast.LENGTH_SHORT).show();
-        }
+        Global.isUpdateAvailable(LoginActivity.this);
 
 
 
