@@ -220,11 +220,11 @@ public class Global {
 
                     if(BuildConfig.VERSION_CODE < versionCode){
                         DownloadManager manager = new DownloadManager.Builder(activity)
-                                .apkUrl("https://github.com/umairmushtaq109/SixSApp/releases/download/v1.1.1/v1.1.1.apk")
-                                .apkName("v1.1.1.apk")
+                                .apkUrl(updateInfo.getDownloadUrl())
+                                .apkName("update.apk")
                                 .showNotification(true)
                                 .smallIcon(R.mipmap.ic_launcher)
-                                .apkVersionCode(versionCode) //This must be incremented in build.gradle (:app) and here
+                                .apkVersionCode(versionCode)
                                 .apkVersionName(versionName)
                                 .apkSize("13.7MB")
                                 .apkDescription(releaseNotes)
