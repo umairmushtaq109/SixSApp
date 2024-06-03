@@ -122,21 +122,8 @@ public class LoginActivity extends AppCompatActivity {
                     .check();
         }
 
-        //Check for Updates
-//        AppUpdater appUpdater = new AppUpdater(this)
-//                .setDisplay(Display.DIALOG)
-//                .setUpdateFrom(UpdateFrom.JSON)
-//                .setTitleOnUpdateAvailable("Update available")
-//                .setContentOnUpdateAvailable("Install the latest version available of 6S App")
-//                .setButtonUpdate("Update now?")
-//	              .setIcon(R.mipmap.ic_launcher) // Notification icon
-//                .setCancelable(false);
-//        appUpdater.start();
-
+        //Checking for Updates
         Global.isUpdateAvailable(LoginActivity.this);
-
-
-
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

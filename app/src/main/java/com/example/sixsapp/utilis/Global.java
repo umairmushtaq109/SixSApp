@@ -120,7 +120,7 @@ public class Global {
 
     public static void Open5W1H(Context context){
         // Define the URL you want to open
-        String urlToOpen = "http://192.168.50.5:5000/FiveWOneH/WorkOrder?ApplicationID=1";
+        String urlToOpen = "http://10.10.100.6:5000/FiveWOneH/WorkOrder?ApplicationID=1";
         // Create an Intent with the ACTION_VIEW action and the URL
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlToOpen));
         context.startActivity(intent);
@@ -220,14 +220,7 @@ public class Global {
                     String versionName = updateInfo.getVersionName();
                     String releaseNotes = updateInfo.getReleaseNotes();
 
-//                    PackageInfo packageInfo = null;
-//                    try {
-//                        packageInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0);
-//                    } catch (PackageManager.NameNotFoundException e) {
-//                        Toast.makeText(activity, "Failed to retrieve version code", Toast.LENGTH_SHORT).show();
-//                    }
-//                    int vCode = packageInfo.versionCode;
-
+                    // If Current Version is less than version on Github
                     if(BuildConfig.VERSION_CODE < versionCode){
                         DownloadManager manager = new DownloadManager.Builder(activity)
                                 .apkUrl(updateInfo.getDownloadUrl())

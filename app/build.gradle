@@ -10,7 +10,7 @@ android {
         applicationId "com.example.sixsapp"
         minSdk 24
         targetSdk 33
-        versionCode 2
+        versionCode 2 //This needs to be updated for auto-update
         versionName "1.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

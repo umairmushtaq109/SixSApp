@@ -66,7 +66,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
     List<Pair> pairs;
     EasyImage easyImage;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
